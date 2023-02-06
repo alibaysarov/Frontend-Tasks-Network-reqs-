@@ -1,3 +1,5 @@
+
+
 // Отправка при помощи xhr
 // let xhr =new XMLHttpRequest()
 // xhr.open('GET','https://jsonplaceholder.typicode.com/todos/10')
@@ -30,6 +32,8 @@
 //     }
 //   })
 
+
+// Отправка через async await
 async function fetchWithAwait (url) { 
 let res= await fetch(url);
  if(res.ok){
@@ -37,4 +41,10 @@ let res= await fetch(url);
   console.log(json);
  }
 }
-fetchWithAwait('https://jsonplaceholder.typicode.com/todos/10')
+// Отправка через Fetch
+// fetch('https://jsonplaceholder.typicode.com/todos/10')
+//   .then(res=>res.json())
+//     .then(res=>console.log(res))
+
+//Отправка через axios
+// axios.get('https://jsonplaceholder.typicode.com/todos/10').then(res=>console.log(res.data))
