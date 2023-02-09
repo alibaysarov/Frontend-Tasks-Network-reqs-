@@ -10,27 +10,24 @@
 // }
 
 // Добавление при помощи цепочки промисов
-// function fakeFetch(url, method = 'GET') {
-//   function success() {
-//     let xhr = new XMLHttpRequest();
-//     xhr.open(method.toUpperCase(), url);
-//     xhr.responseType = 'json';
-//     xhr.send();
-//     return xhr;
-//   }
-//   const errHandler = () => console.log('Ошибка');
-//   return new Promise(function (resolve, reject) {
-//     resolve(success);
-//     reject(errHandler);
-//   });
-// }
-// fakeFetch('https://jsonplaceholder.typicode.com/todos/10')
-//   .then(res=>res())
-//   .then(res=>{
-//     res.onload=function () { 
-//       console.log(res.response);
-//     }
-//   })
+function fakeFetch(url, method = 'GET') {
+  const xhr = new XMLHttpRequest();
+  return new Promise(function (resolve, reject) {
+    xhr.open(method.toUpperCase(), url);
+    xhr.responseType = 'json';
+    xhr.send();
+
+    xhr.onload = function () {
+      if (xhr.status == 200) {
+        resolve(xhr.response);
+      } else {
+        reject(`Error occured - status code ${xhr.status}`);
+      }
+    };
+  });
+}
+fakeFetch('https://jsonplaceholder.typicode.com/todos/10')
+  .then((res) => console.log(res),err=>console.log(err))
 
 
 // Отправка через async await
